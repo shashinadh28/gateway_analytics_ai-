@@ -3,15 +3,6 @@ import { useState } from "react";
 import SectionWrapper from "./SectionWrapper.jsx";
 import { easeExecutive, fadeUp, stagger } from "./motion.js";
 
-const ACCENTS = [
-  { primary: "#3b82f6", secondary: "#06b6d4", glow: "rgba(59,130,246,0.18)" },
-  { primary: "#8b5cf6", secondary: "#a855f7", glow: "rgba(139,92,246,0.18)" },
-  { primary: "#06b6d4", secondary: "#34d399", glow: "rgba(6,182,212,0.18)" },
-  { primary: "#f59e0b", secondary: "#f97316", glow: "rgba(245,158,11,0.18)" },
-  { primary: "#10b981", secondary: "#14b8a6", glow: "rgba(16,185,129,0.18)" },
-  { primary: "#ef4444", secondary: "#ec4899", glow: "rgba(239,68,68,0.18)" },
-];
-
 const ICONS = [
   "M7 17V9m5 8V5m5 12v-7",
   "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
@@ -26,31 +17,37 @@ const cards = [
     title: "Executive KPI Systems",
     description:
       "Define metrics, align owners, and make performance measurable across the org.",
+    image: "/Core_capabilities/Executive_KPI_Systems.webp",
   },
   {
     title: "Modern Data Platforms",
     description:
       "Cloud warehouses/lakes, orchestration, governance, and cost controls built-in.",
+    image: "/Core_capabilities/Modern_Data_Platforms.webp",
   },
   {
     title: "Analytics Engineering",
     description:
       "Semantic layers, transformation standards, and trusted datasets at scale.",
+    image: "/Core_capabilities/Analytics_Engineering.webp",
   },
   {
     title: "AI Strategy + Use Cases",
     description:
       "Identify where AI changes outcomes, scope value, and set responsible guardrails.",
+    image: "/Core_capabilities/AI_Strategy_Use_Cases.webp",
   },
   {
     title: "Machine Learning Delivery",
     description:
       "From prototyping to production pipelines with monitoring and iteration loops.",
+    image: "/Core_capabilities/Machine_Learning_Delivery.webp",
   },
   {
     title: "Enablement + Operating Model",
     description:
       "Upskill teams, establish governance, and build repeatable delivery rhythms.",
+    image: null,
   },
 ];
 
@@ -65,74 +62,58 @@ export default function CapabilitiesGrid() {
       title="Built for enterprise scale and governance"
       description="A modular set of services designed to meet you where you are — and compound value as maturity increases."
     >
-      <div className="relative">
-        <div className="pointer-events-none absolute -inset-16 rounded-[48px] bg-[radial-gradient(circle_at_30%_20%,rgba(37,99,235,0.16),transparent_55%)]" />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={stagger(0.12)}
+        className="relative grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+      >
+        {cards.map((card, i) => {
+          const num = String(i + 1).padStart(2, "0");
+          const isActive = hovered === i;
+          const isOtherHovered = hovered !== null && hovered !== i;
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={stagger(0.12)}
-          className="relative grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {cards.map((card, i) => {
-            const accent = ACCENTS[i];
-            const num = String(i + 1).padStart(2, "0");
-            const isActive = hovered === i;
-            const isOtherHovered = hovered !== null && hovered !== i;
-
-            return (
-              <motion.div
-                key={card.title}
-                variants={fadeUp}
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.5, ease: easeExecutive }}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl"
-                style={{
-                  willChange: "transform",
-                  filter: isOtherHovered ? "blur(2px)" : "blur(0px)",
-                  opacity: isOtherHovered ? 0.5 : 1,
-                  transition:
-                    "filter 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1)",
-                }}
-              >
-                {/* Background gradient on hover */}
+          return (
+            <motion.div
+              key={card.title}
+              variants={fadeUp}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm transition-all duration-500"
+              style={{
+                willChange: "transform",
+                opacity: isOtherHovered ? 0.55 : 1,
+                transition:
+                  "opacity 0.4s cubic-bezier(0.4,0,0.2,1)",
+              }}
+            >
+              {/* Image area - hidden by default, revealed on hover */}
+              {card.image && (
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  className="overflow-hidden transition-all duration-500 ease-in-out"
                   style={{
-                    background: `radial-gradient(ellipse at 30% 20%, ${accent.glow}, transparent 60%)`,
+                    maxHeight: isActive ? 200 : 0,
+                    opacity: isActive ? 1 : 0,
                   }}
-                />
+                >
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-48 w-full object-cover"
+                  />
+                </div>
+              )}
 
-                {/* Ring glow on hover */}
-                <div
-                  className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{
-                    boxShadow: `inset 0 0 0 1px ${accent.primary}44, 0 8px 40px ${accent.glow}`,
-                  }}
-                />
-
-                {/* Light sweep */}
-                <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 transition-[transform,opacity] duration-700 ease-in-out group-hover:translate-x-full group-hover:opacity-100" />
-
+              <div className="p-7">
                 {/* Header row: number badge + icon */}
-                <div className="relative mb-6 flex items-center justify-between">
-                  <motion.div
-                    className="flex h-11 w-11 items-center justify-center rounded-xl text-sm font-bold text-white shadow-lg"
-                    style={{
-                      background: `linear-gradient(135deg, ${accent.primary}, ${accent.secondary})`,
-                      boxShadow: isActive
-                        ? `0 4px 24px ${accent.glow}, 0 0 40px ${accent.glow}`
-                        : `0 4px 16px ${accent.glow}`,
-                    }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.25 }}
-                  >
+                <div className="mb-5 flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-sm font-bold text-white">
                     {num}
-                  </motion.div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
+                  </div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
                     <svg
                       width="20"
                       height="20"
@@ -140,55 +121,34 @@ export default function CapabilitiesGrid() {
                       fill="none"
                       aria-hidden="true"
                     >
-                      <motion.path
+                      <path
                         d={ICONS[i]}
-                        stroke={accent.primary}
+                        stroke="rgba(148,163,184,0.8)"
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        initial={{ pathLength: 0 }}
-                        whileInView={{ pathLength: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.8,
-                          ease: easeExecutive,
-                          delay: 0.2 + i * 0.08,
-                        }}
                       />
                     </svg>
                   </div>
                 </div>
 
                 {/* Title */}
-                <div className="relative text-lg font-semibold tracking-tight">
+                <div className="text-lg font-semibold tracking-tight text-white">
                   {card.title}
                 </div>
 
-                {/* Gradient underline */}
-                <div
-                  className="mt-3 h-[2px] w-12 rounded-full transition-all duration-500 group-hover:w-20"
-                  style={{
-                    background: `linear-gradient(to right, ${accent.primary}, ${accent.secondary})`,
-                  }}
-                />
+                {/* Simple underline */}
+                <div className="mt-3 h-px w-12 bg-white/20 transition-all duration-500 group-hover:w-20 group-hover:bg-white/40" />
 
                 {/* Description */}
-                <div className="relative mt-4 text-sm leading-relaxed text-white/70">
+                <div className="mt-4 text-sm leading-relaxed text-white/60">
                   {card.description}
                 </div>
-
-                {/* Bottom accent line */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{
-                    background: `linear-gradient(to right, transparent, ${accent.primary}, ${accent.secondary}, transparent)`,
-                  }}
-                />
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </SectionWrapper>
   );
 }

@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import LandingPage from "./pages/LandingPage.jsx";
 import IntroOverlay from "./components/IntroOverlay.jsx";
 import DomainPage from "./pages/DomainPage.jsx";
+import CreditsPage from "./pages/CreditsPage.jsx";
 
 function ScrollManager() {
   const location = useLocation();
@@ -42,6 +43,7 @@ export default function App() {
       <Routes location={location}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/domains/:slug" element={<DomainPage />} />
+        <Route path="/credits" element={<CreditsPage />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
 

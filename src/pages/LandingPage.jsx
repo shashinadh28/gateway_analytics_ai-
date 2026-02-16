@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Hero from "../components/landing/Hero.jsx";
 import WhatWeDo from "../components/landing/WhatWeDo.jsx";
@@ -13,6 +14,7 @@ import { easeInOut } from "../components/landing/motion.js";
 const ease = [0.4, 0, 0.2, 1];
 
 const NAV_LINKS = [
+  { label: "Home", href: "#hero" },
   { label: "How We Work", href: "#platforms" },
   { label: "Core Capabilities", href: "#capabilities" },
   { label: "Domains", href: "#industries" },
@@ -21,11 +23,15 @@ const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
-const NAV_LOGO_SRC = "/logo-icon.png";
+const NAV_LOGO_SRC = "/Original_Gateway_Analytics_AI_Logo.png";
 const FOOTER_LOGO_SRC = "/Original_Gateway_Analytics_AI_Logo.png";
 
 /* ── smooth-scroll helper ──────────────────────────────────── */
 function smoothScrollTo(hash) {
+  if (hash === "#hero") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
   const id = hash.replace("#", "");
   const el = document.getElementById(id);
   if (!el) return;
@@ -190,7 +196,7 @@ export default function LandingPage() {
               <img
                 src={NAV_LOGO_SRC}
                 alt="Gateway Analytics AI"
-                className="h-9 w-auto object-contain transition-opacity group-hover:opacity-80"
+                className="h-8 w-auto max-w-[180px] object-contain transition-opacity group-hover:opacity-80"
               />
             </a>
 
@@ -419,9 +425,29 @@ export default function LandingPage() {
           {/* Divider */}
           <div className="mt-8 border-t border-white/[0.06]" />
 
-          {/* Copyright */}
-          <div className="mt-6 text-center text-sm text-white/40">
-            &copy; 2026 Gateway Global Workforce, All rights reserved
+          {/* Copyright + Attribution */}
+          <div className="mt-6 flex flex-col items-center gap-2 text-sm text-white/40">
+            <div>&copy; 2026 Gateway Global Workforce, All rights reserved</div>
+            <div className="flex items-center gap-3">
+              <span>
+                Images designed by{" "}
+                <a
+                  href="https://www.freepik.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/50 underline underline-offset-2 transition-colors hover:text-white/70"
+                >
+                  Freepik
+                </a>
+              </span>
+              <span className="text-white/20">|</span>
+              <Link
+                to="/credits"
+                className="text-white/50 underline underline-offset-2 transition-colors hover:text-white/70"
+              >
+                Image Credits
+              </Link>
+            </div>
           </div>
         </div>
       </footer>

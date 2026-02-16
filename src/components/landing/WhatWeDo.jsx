@@ -8,31 +8,12 @@ export default function WhatWeDo() {
       title: "Data Architecture",
       description:
         "Scalable, governed foundations for trusted enterprise data products.",
-      iconBg: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-      accent: "from-blue-500 to-cyan-400",
+      color: "#3b82f6",
       icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="text-white"
-        >
-          <path
-            d="M6 7.5C6 6.12 8.69 5 12 5s6 1.12 6 2.5S15.31 10 12 10 6 8.88 6 7.5Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M6 7.5V12c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5V7.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M6 12v4.5c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5V12"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+          <path d="M6 7.5C6 6.12 8.69 5 12 5s6 1.12 6 2.5S15.31 10 12 10 6 8.88 6 7.5Z" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M6 7.5V12c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5V7.5" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M6 12v4.5c0 1.38 2.69 2.5 6 2.5s6-1.12 6-2.5V12" stroke="currentColor" strokeWidth="1.5" />
         </svg>
       ),
     },
@@ -40,40 +21,13 @@ export default function WhatWeDo() {
       title: "Modern Analytics",
       description:
         "Self-serve reporting, semantic layers, and KPI systems your leaders trust.",
-      iconBg: "linear-gradient(135deg, #8b5cf6, #6366f1)",
-      accent: "from-violet-500 to-indigo-400",
+      color: "#8b5cf6",
       icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="text-white"
-        >
-          <path
-            d="M4.5 19.5V5.5c0-.55.45-1 1-1H20"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M7.5 16.5v-4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M12 16.5v-7"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M16.5 16.5v-9"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+          <path d="M4.5 19.5V5.5c0-.55.45-1 1-1H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M7.5 16.5v-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M12 16.5v-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M16.5 16.5v-9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -81,39 +35,13 @@ export default function WhatWeDo() {
       title: "Applied AI",
       description:
         "Forecasting, anomaly detection, copilots, and automation tied to business value.",
-      iconBg: "linear-gradient(135deg, #06b6d4, #10b981)",
-      accent: "from-cyan-500 to-emerald-400",
+      color: "#06b6d4",
       icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          className="text-white"
-        >
-          <path
-            d="M9 3v2M15 3v2M5 9H3M21 9h-2M9 21v-2M15 21v-2"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M8.5 7.5h7A2.5 2.5 0 0 1 18 10v4a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5v-4a2.5 2.5 0 0 1 2.5-2.5Z"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <path
-            d="M10 12h4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M10 15h4"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+          <path d="M9 3v2M15 3v2M5 9H3M21 9h-2M9 21v-2M15 21v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M8.5 7.5h7A2.5 2.5 0 0 1 18 10v4a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5v-4a2.5 2.5 0 0 1 2.5-2.5Z" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M10 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M10 15h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       ),
     },
@@ -138,19 +66,20 @@ export default function WhatWeDo() {
           <motion.div
             key={item.title}
             variants={fadeUp}
-            whileHover={{ y: -8 }}
+            whileHover={{ y: -6 }}
             transition={{ duration: 0.4, ease: easeExecutive }}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-[0_1px_3px_rgba(0,0,0,0.04)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
+            className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-shadow duration-300 hover:shadow-md"
           >
-            {/* top accent gradient strip */}
+            {/* top accent strip */}
             <div
-              className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${item.accent} opacity-80 transition-opacity duration-300 group-hover:opacity-100`}
+              className="absolute inset-x-0 top-0 h-1"
+              style={{ background: item.color }}
             />
 
-            {/* icon on gradient bg */}
+            {/* icon */}
             <div
-              className="flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-lg transition-transform duration-300 group-hover:scale-105"
-              style={{ background: item.iconBg }}
+              className="flex h-14 w-14 items-center justify-center rounded-2xl text-white"
+              style={{ background: item.color }}
             >
               {item.icon}
             </div>
@@ -162,17 +91,6 @@ export default function WhatWeDo() {
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
               {item.description}
             </p>
-
-            {/* bottom accent line on hover */}
-            <div
-              className={`mt-7 h-px w-full bg-gradient-to-r ${item.accent} opacity-0 transition-opacity duration-300 group-hover:opacity-35`}
-            />
-
-            {/* subtle radial glow behind card on hover */}
-            <div
-              className="pointer-events-none absolute -bottom-10 left-1/2 h-20 w-3/4 -translate-x-1/2 rounded-full opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-30"
-              style={{ background: item.iconBg }}
-            />
           </motion.div>
         ))}
       </motion.div>

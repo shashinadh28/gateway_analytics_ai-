@@ -19,8 +19,6 @@ const STEPS = [
       "What actions should data enable?",
     ],
     accent: "#3b82f6",
-    accentEnd: "#06b6d4",
-    glow: "rgba(59,130,246,0.25)",
   },
   {
     number: "02",
@@ -32,8 +30,6 @@ const STEPS = [
       "Ensure data quality & governance",
     ],
     accent: "#8b5cf6",
-    accentEnd: "#a855f7",
-    glow: "rgba(139,92,246,0.25)",
   },
   {
     number: "03",
@@ -45,8 +41,6 @@ const STEPS = [
       "Insights that are easy to explain and act on",
     ],
     accent: "#06b6d4",
-    accentEnd: "#34d399",
-    glow: "rgba(6,182,212,0.25)",
   },
   {
     number: "04",
@@ -59,8 +53,6 @@ const STEPS = [
       "Continuous improvement mindset",
     ],
     accent: "#10b981",
-    accentEnd: "#2dd4bf",
-    glow: "rgba(16,185,129,0.25)",
   },
 ];
 
@@ -72,7 +64,6 @@ export default function ApproachSection() {
   const [isPaused, setIsPaused] = useState(false);
   const resumeTimer = useRef(null);
 
-  /* auto-advance */
   useEffect(() => {
     if (isPaused) return;
     const id = setInterval(() => {
@@ -95,57 +86,10 @@ export default function ApproachSection() {
   return (
     <section
       id="approach"
-      className="relative overflow-hidden bg-[#070b14] text-white"
+      className="relative overflow-hidden bg-ink-950 text-white"
     >
-      {/* ── background layers ── */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(59,130,246,0.14),transparent_48%),radial-gradient(circle_at_75%_65%,rgba(34,211,238,0.08),transparent_50%)]" />
-        <motion.div
-          className="absolute inset-0 opacity-[0.04]"
-          animate={{ backgroundPosition: ["0px 0px", "80px 80px"] }}
-          transition={{ duration: 30, ease: "linear", repeat: Infinity }}
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-            maskImage:
-              "radial-gradient(circle at 50% 35%, black 0%, transparent 60%)",
-            WebkitMaskImage:
-              "radial-gradient(circle at 50% 35%, black 0%, transparent 60%)",
-          }}
-        />
-      </div>
-
-      {/* floating particles */}
-      <div className="pointer-events-none absolute inset-0">
-        {Array.from({ length: 8 }, (_, i) => {
-          const seeds = [17, 31, 43, 7, 29, 41, 13, 23];
-          const a = seeds[i % 8];
-          const b = seeds[(i + 3) % 8];
-          return (
-            <motion.span
-              key={i}
-              className="absolute rounded-full bg-blue-400/20"
-              style={{
-                left: `${((a * (i + 2) * 7) % 90) + 5}%`,
-                top: `${((b * (i + 3) * 9) % 80) + 10}%`,
-                width: 3,
-                height: 3,
-              }}
-              animate={{ y: [0, -20, 0], opacity: [0.12, 0.35, 0.12] }}
-              transition={{
-                duration: 6 + (a % 5),
-                delay: i * 0.4,
-                ease: "easeInOut",
-                repeat: Infinity,
-              }}
-            />
-          );
-        })}
-      </div>
-
       <div className="relative mx-auto max-w-6xl px-6 py-28">
-        {/* ── section header ── */}
+        {/* section header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -178,7 +122,7 @@ export default function ApproachSection() {
                 hidden: { scaleX: 0 },
                 visible: { scaleX: 1, transition: { duration: 0.9, ease } },
               }}
-              className="mt-5 h-px origin-left bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-cyan-400/0"
+              className="mt-5 h-px origin-left bg-white/15"
             />
           </div>
           <ScrollText
@@ -190,7 +134,7 @@ export default function ApproachSection() {
           />
         </motion.div>
 
-        {/* ── step navigator (desktop) ── */}
+        {/* step navigator (desktop) */}
         <div className="mt-16 hidden lg:flex items-center">
           {STEPS.map((s, i) => (
             <div key={i} className="flex flex-1 items-center last:flex-none">
@@ -204,28 +148,9 @@ export default function ApproachSection() {
                 <div
                   className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-all duration-500"
                   style={{
-                    background:
-                      active === i
-                        ? `linear-gradient(135deg, ${s.accent}, ${s.accentEnd})`
-                        : "rgba(255,255,255,0.06)",
-                    boxShadow:
-                      active === i
-                        ? `0 0 20px ${s.glow}, 0 0 40px ${s.glow}`
-                        : "none",
+                    background: active === i ? s.accent : "rgba(255,255,255,0.06)",
                   }}
                 >
-                  {active === i && (
-                    <motion.div
-                      className="absolute inset-0 rounded-full"
-                      style={{ border: `2px solid ${s.accent}` }}
-                      animate={{ scale: [1, 1.6], opacity: [0.6, 0] }}
-                      transition={{
-                        duration: 2,
-                        ease: "easeOut",
-                        repeat: Infinity,
-                      }}
-                    />
-                  )}
                   <span className="relative z-10">{s.number}</span>
                 </div>
                 <span
@@ -242,9 +167,7 @@ export default function ApproachSection() {
                   <div className="absolute inset-0 bg-white/[0.06]" />
                   <motion.div
                     className="absolute inset-y-0 left-0"
-                    style={{
-                      backgroundImage: `linear-gradient(to right, ${STEPS[i].accent}, ${STEPS[i + 1].accent})`,
-                    }}
+                    style={{ background: STEPS[i].accent }}
                     animate={{ width: active > i ? "100%" : "0%" }}
                     transition={{ duration: 0.6, ease }}
                   />
@@ -254,7 +177,7 @@ export default function ApproachSection() {
           ))}
         </div>
 
-        {/* ── step navigator (mobile) ── */}
+        {/* step navigator (mobile) */}
         <div className="mt-14 flex gap-2 overflow-x-auto pb-4 lg:hidden scrollbar-none">
           {STEPS.map((s, i) => (
             <button
@@ -270,10 +193,7 @@ export default function ApproachSection() {
               <span
                 className="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold"
                 style={{
-                  background:
-                    active === i
-                      ? `linear-gradient(135deg, ${s.accent}, ${s.accentEnd})`
-                      : "rgba(255,255,255,0.08)",
+                  background: active === i ? s.accent : "rgba(255,255,255,0.08)",
                 }}
               >
                 {s.number}
@@ -283,7 +203,7 @@ export default function ApproachSection() {
           ))}
         </div>
 
-        {/* ── featured content ── */}
+        {/* featured content */}
         <div className="mt-10">
           <AnimatePresence mode="wait">
             <motion.div
@@ -296,17 +216,11 @@ export default function ApproachSection() {
             >
               {/* image */}
               <div className="relative overflow-hidden rounded-2xl border border-white/[0.06]">
-                <div
-                  className="pointer-events-none absolute inset-0 z-10"
-                  style={{
-                    background: `linear-gradient(135deg, ${step.accent}22 0%, transparent 60%), linear-gradient(to top, #070b14 0%, transparent 40%)`,
-                  }}
-                />
                 <motion.img
                   src={step.image}
                   alt={step.title}
                   className="h-72 w-full object-cover lg:h-full lg:min-h-[420px]"
-                  initial={{ scale: 1.08 }}
+                  initial={{ scale: 1.05 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.8, ease }}
                 />
@@ -315,10 +229,8 @@ export default function ApproachSection() {
                   <span
                     className="text-8xl font-extrabold leading-none"
                     style={{
-                      backgroundImage: `linear-gradient(135deg, ${step.accent}, ${step.accentEnd})`,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      opacity: 0.25,
+                      color: step.accent,
+                      opacity: 0.2,
                     }}
                   >
                     {step.number}
@@ -336,19 +248,14 @@ export default function ApproachSection() {
                   {/* badge row */}
                   <div className="mb-5 flex items-center gap-4">
                     <div
-                      className="flex h-12 w-12 items-center justify-center rounded-xl text-base font-bold text-white shadow-lg"
-                      style={{
-                        background: `linear-gradient(135deg, ${step.accent}, ${step.accentEnd})`,
-                        boxShadow: `0 4px 24px ${step.glow}`,
-                      }}
+                      className="flex h-12 w-12 items-center justify-center rounded-xl text-base font-bold text-white"
+                      style={{ background: step.accent }}
                     >
                       {step.number}
                     </div>
                     <div
                       className="h-px flex-1"
-                      style={{
-                        background: `linear-gradient(to right, ${step.accent}40, transparent)`,
-                      }}
+                      style={{ background: `${step.accent}40` }}
                     />
                   </div>
 
@@ -357,13 +264,10 @@ export default function ApproachSection() {
                     {step.title}
                   </h3>
 
-                  {/* gradient underline */}
+                  {/* underline */}
                   <motion.div
                     className="mt-4 h-[2px] rounded-full"
-                    style={{
-                      background: `linear-gradient(to right, ${step.accent}, ${step.accentEnd})`,
-                      transformOrigin: "left",
-                    }}
+                    style={{ background: step.accent, transformOrigin: "left" }}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 0.7, ease, delay: 0.2 }}
@@ -385,10 +289,7 @@ export default function ApproachSection() {
                       >
                         <span
                           className="mt-[9px] h-2 w-2 shrink-0 rounded-full"
-                          style={{
-                            background: `linear-gradient(135deg, ${step.accent}, ${step.accentEnd})`,
-                            boxShadow: `0 0 8px ${step.glow}`,
-                          }}
+                          style={{ background: step.accent }}
                         />
                         <span>{b}</span>
                       </motion.li>
@@ -403,9 +304,7 @@ export default function ApproachSection() {
           <div className="mt-8 h-[2px] w-full overflow-hidden rounded-full bg-white/[0.06]">
             <motion.div
               className="h-full rounded-full"
-              style={{
-                background: `linear-gradient(to right, ${step.accent}, ${step.accentEnd})`,
-              }}
+              style={{ background: step.accent }}
               key={`progress-${active}-${isPaused}`}
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
@@ -417,10 +316,6 @@ export default function ApproachSection() {
           </div>
         </div>
       </div>
-
-      {/* edge gradients */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink-950/50 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink-950/50 to-transparent" />
     </section>
   );
 }
