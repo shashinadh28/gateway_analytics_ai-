@@ -47,7 +47,7 @@ const cards = [
     title: "Enablement + Operating Model",
     description:
       "Upskill teams, establish governance, and build repeatable delivery rhythms.",
-    image: null,
+    image: "/Core_capabilities/Enablement_Operating_Model.webp",
   },
 ];
 

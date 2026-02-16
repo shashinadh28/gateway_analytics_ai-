@@ -23,7 +23,7 @@ const NAV_LINKS = [
   { label: "Contact", href: "#contact" },
 ];
 
-const NAV_LOGO_SRC = "/Original_Gateway_Analytics_AI_Logo.png";
+const NAV_LOGO_SRC = "/logo-icon.png";
 const FOOTER_LOGO_SRC = "/Original_Gateway_Analytics_AI_Logo.png";
 
 /* ── smooth-scroll helper ──────────────────────────────────── */
@@ -118,7 +118,11 @@ export default function LandingPage() {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            setActiveSection(`#${id}`);
+            if (window.scrollY < 300) {
+              setActiveSection("");
+            } else {
+              setActiveSection(`#${id}`);
+            }
           }
         },
         { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
@@ -196,7 +200,7 @@ export default function LandingPage() {
               <img
                 src={NAV_LOGO_SRC}
                 alt="Gateway Analytics AI"
-                className="h-8 w-auto max-w-[180px] object-contain transition-opacity group-hover:opacity-80"
+                className="h-9 w-auto object-contain transition-opacity group-hover:opacity-80"
               />
             </a>
 
