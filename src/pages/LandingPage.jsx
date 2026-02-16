@@ -66,6 +66,7 @@ function HamburgerIcon({ open }) {
 export default function LandingPage() {
   const [navHidden, setNavHidden] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [hasNavSelection, setHasNavSelection] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
@@ -117,12 +118,8 @@ export default function LandingPage() {
       if (!el) return;
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            if (window.scrollY < 300) {
-              setActiveSection("");
-            } else {
-              setActiveSection(`#${id}`);
-            }
+          if (entry.isIntersecting && hasNavSelection) {
+            setActiveSection(`#${id}`);
           }
         },
         { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
@@ -132,12 +129,14 @@ export default function LandingPage() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [hasNavSelection]);
 
   /* ── smooth-scroll click handler ─── */
   const handleNavClick = useCallback(
     (e, href) => {
       e.preventDefault();
+      setHasNavSelection(true);
+      setActiveSection(href);
       smoothScrollTo(href);
       setMobileMenuOpen(false);
     },
@@ -193,6 +192,8 @@ export default function LandingPage() {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
+                setHasNavSelection(false);
+                setActiveSection("");
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
               className="group flex items-center"
