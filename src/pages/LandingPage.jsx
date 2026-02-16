@@ -24,7 +24,7 @@ const NAV_LINKS = [
 ];
 
 const NAV_LOGO_SRC = "/logo-icon.png";
-const FOOTER_LOGO_SRC = "/Original_Gateway_Analytics_AI_Logo.png";
+const FOOTER_EASE = [0.22, 1, 0.36, 1];
 
 /* ── smooth-scroll helper ──────────────────────────────────── */
 function smoothScrollTo(hash) {
@@ -358,14 +358,61 @@ export default function LandingPage() {
         <div className="mx-auto max-w-6xl px-6 pb-20 pt-12">
           {/* Top row: Logo + Nav + Social */}
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img
-                src={FOOTER_LOGO_SRC}
-                alt="Gateway Analytics AI"
-                className="h-10 w-auto object-contain"
-              />
-            </div>
+            {/* Animated Logo */}
+            <motion.div
+              className="flex items-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.35 } },
+              }}
+            >
+              <motion.div
+                variants={{
+                  hidden: { scale: 0.7, opacity: 0 },
+                  visible: {
+                    scale: 1,
+                    opacity: 1,
+                    transition: { duration: 0.8, ease: FOOTER_EASE },
+                  },
+                }}
+              >
+                <img
+                  src="/logo-icon.png"
+                  alt="Gateway Analytics AI"
+                  className="h-10 w-10 object-contain"
+                />
+              </motion.div>
+              <motion.div
+                className="overflow-hidden"
+                variants={{
+                  hidden: { width: 0 },
+                  visible: {
+                    width: "auto",
+                    transition: { duration: 0.9, ease: FOOTER_EASE },
+                  },
+                }}
+              >
+                <motion.span
+                  className="whitespace-nowrap pl-2.5 text-lg font-semibold tracking-tight text-white"
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { duration: 0.7, ease: FOOTER_EASE },
+                    },
+                  }}
+                >
+                  Gateway Analytics{" "}
+                  <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                    AI
+                  </span>
+                </motion.span>
+              </motion.div>
+            </motion.div>
 
             {/* Nav Links */}
             <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
