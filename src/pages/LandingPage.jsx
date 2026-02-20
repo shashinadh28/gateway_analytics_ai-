@@ -9,6 +9,7 @@ import IndustriesGrid from "../components/landing/IndustriesGrid.jsx";
 import ApproachSection from "../components/landing/ApproachSection.jsx";
 import WhyGateway from "../components/landing/WhyGateway.jsx";
 import CTASection from "../components/landing/CTASection.jsx";
+import BiomedicalSection from "../components/landing/BiomedicalSection.jsx";
 import { easeInOut } from "../components/landing/motion.js";
 
 const ease = [0.4, 0, 0.2, 1];
@@ -349,6 +350,7 @@ export default function LandingPage() {
       <Hero />
       <WhatWeDo />
       <CapabilitiesGrid />
+      <BiomedicalSection />
       <TechnologyPlatforms />
       <IndustriesGrid />
       <ApproachSection />

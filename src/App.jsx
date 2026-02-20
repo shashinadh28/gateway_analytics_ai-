@@ -5,6 +5,7 @@ import LandingPage from "./pages/LandingPage.jsx";
 import IntroOverlay from "./components/IntroOverlay.jsx";
 import DomainPage from "./pages/DomainPage.jsx";
 import CreditsPage from "./pages/CreditsPage.jsx";
+import BiomedicalIntelligencePage from "./pages/BiomedicalIntelligencePage.jsx";
 
 function ScrollManager() {
   const location = useLocation();
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/domains/:slug" element={<DomainPage />} />
         <Route path="/credits" element={<CreditsPage />} />
+        <Route path="/biomedical-intelligence" element={<BiomedicalIntelligencePage />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
 
