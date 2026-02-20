@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { easeExecutive, stagger, fadeUp } from "./motion.js";
-import ScrollText from "../ScrollText.jsx";
 
 const ease = [0.4, 0, 0.2, 1];
 
@@ -49,137 +48,129 @@ export default function BiomedicalSection() {
         />
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="mx-auto max-w-7xl px-6 py-28">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.12 }}
           variants={stagger(0.1)}
-          className="grid items-center gap-12 lg:grid-cols-2"
         >
-          {/* LEFT — Content */}
-          <div>
-            <ScrollText
-              useParent
-              as="p"
-              text="INDUSTRY AI SOLUTION"
-              blur={7}
-              distance={14}
+          {/* Full-width top section: eyebrow + heading centered */}
+          <div className="text-center">
+            <motion.p
+              variants={fadeUp}
               className="text-sm font-semibold tracking-wider uppercase text-blue-400/80"
+            >
+              INDUSTRY AI SOLUTION
+            </motion.p>
+
+            <motion.h2
+              variants={fadeUp}
+              className="mx-auto mt-4 max-w-4xl text-3xl font-semibold tracking-[-0.02em] md:text-4xl lg:text-5xl"
+            >
+              AI-Powered Biomedical Intelligence Dashboard
+            </motion.h2>
+
+            <motion.div
+              variants={{
+                hidden: { scaleX: 0, opacity: 0 },
+                visible: { scaleX: 1, opacity: 1, transition: { duration: 0.7, ease: easeExecutive } },
+              }}
+              className="mx-auto mt-5 h-px w-48 origin-center bg-white/15"
             />
 
-            <div className="mt-4">
-              <ScrollText
-                useParent
-                as="h2"
-                text="AI-Powered Biomedical Intelligence Dashboard"
-                lineAnime
-                blur={10}
-                distance={18}
-                staggerChildren={0.055}
-                className="text-3xl font-semibold tracking-[-0.02em] md:text-4xl"
-              />
-              <motion.div
-                variants={{
-                  hidden: { scaleX: 0, opacity: 0 },
-                  visible: { scaleX: 1, opacity: 1, transition: { duration: 0.7, ease: easeExecutive } },
-                }}
-                className="mt-4 h-px origin-left bg-white/15"
-              />
-            </div>
-
-            <ScrollText
-              useParent
-              as="p"
-              text="Replace manual literature reviews with an AI-driven intelligence engine that transforms thousands of PubMed papers into structured, decision-ready insights through interactive Power BI dashboards."
-              blur={6}
-              distance={12}
-              className="mt-5 text-base leading-relaxed text-white/60 md:text-lg"
-            />
-
-            <div className="mt-8 space-y-4">
-              {BULLETS.map((b, i) => (
-                <motion.div
-                  key={b.text}
-                  custom={i}
-                  variants={bulletVariant}
-                  className="flex items-start gap-3"
-                >
-                  <div
-                    className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-blue-500/20 bg-blue-500/[0.08]"
-                    style={{ boxShadow: "0 0 12px rgba(59,130,246,0.12)" }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path
-                        d={b.icon}
-                        stroke="#60a5fa"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <span className="text-sm leading-relaxed text-white/70 md:text-base">
-                    {b.text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div variants={fadeUp} className="mt-10">
-              <Link
-                to="/biomedical-intelligence"
-                className="group relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                style={{
-                  background: "linear-gradient(135deg, #3b82f6, #2563eb)",
-                  boxShadow: "0 0 20px rgba(59,130,246,0.2)",
-                }}
-              >
-                <span className="pointer-events-none absolute inset-0 rounded-xl opacity-0 ring-1 ring-blue-400/55 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="pointer-events-none absolute inset-0 rounded-xl bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="relative">Explore the Platform</span>
-                <svg className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </Link>
-            </motion.div>
+            <motion.p
+              variants={fadeUp}
+              className="mx-auto mt-5 max-w-3xl text-base leading-relaxed text-white/60 md:text-lg"
+            >
+              Replace manual literature reviews with an AI-driven intelligence engine that transforms thousands of PubMed papers into structured, decision-ready insights through interactive Power BI dashboards.
+            </motion.p>
           </div>
 
-          {/* RIGHT — Image */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, x: 30, scale: 0.96 },
-              visible: {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                transition: { duration: 0.9, ease },
-              },
-            }}
-            className="relative"
-          >
-            <div className="relative overflow-hidden rounded-3xl border border-white/10">
-              <div
-                className="pointer-events-none absolute inset-0 z-10"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(59,130,246,0.15), transparent 60%), linear-gradient(to top, rgba(7,11,20,0.5) 0%, transparent 40%)",
-                }}
-              />
-              <motion.img
-                src={HERO_IMAGE}
-                alt="AI Biomedical Research"
-                className="h-full w-full object-cover"
-                style={{ minHeight: 360 }}
-                loading="lazy"
-                decoding="async"
-                initial={{ scale: 1.05 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease }}
-              />
+          {/* Two-column: image left, bullets + CTA right */}
+          <div className="mt-16 grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+            {/* Image */}
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.96 },
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease } },
+              }}
+              className="relative"
+            >
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-blue-900/15">
+                <div
+                  className="pointer-events-none absolute inset-0 z-10"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(59,130,246,0.12), transparent 55%), linear-gradient(to top, rgba(7,11,20,0.5) 0%, transparent 35%)",
+                  }}
+                />
+                <motion.img
+                  src={HERO_IMAGE}
+                  alt="AI Biomedical Research"
+                  className="h-full w-full object-cover"
+                  style={{ minHeight: 380 }}
+                  loading="lazy"
+                  decoding="async"
+                  initial={{ scale: 1.05 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease }}
+                />
+              </div>
+              <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-blue-600/6 blur-3xl" />
+            </motion.div>
+
+            {/* Bullets + CTA */}
+            <div>
+              <div className="space-y-5">
+                {BULLETS.map((b, i) => (
+                  <motion.div
+                    key={b.text}
+                    custom={i}
+                    variants={bulletVariant}
+                    className="flex items-start gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 transition-colors duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
+                  >
+                    <div
+                      className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-500/20 bg-blue-500/[0.08]"
+                      style={{ boxShadow: "0 0 16px rgba(59,130,246,0.12)" }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path
+                          d={b.icon}
+                          stroke="#60a5fa"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-sm leading-relaxed text-white/70 md:text-base">
+                      {b.text}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div variants={fadeUp} className="mt-8">
+                <Link
+                  to="/biomedical-intelligence"
+                  className="group relative inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                  style={{
+                    background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+                    boxShadow: "0 0 22px rgba(59,130,246,0.22)",
+                  }}
+                >
+                  <span className="pointer-events-none absolute inset-0 rounded-xl opacity-0 ring-1 ring-blue-400/55 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="pointer-events-none absolute inset-0 rounded-xl bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="relative">Explore the Platform</span>
+                  <svg className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -39,13 +39,6 @@ const HELPS = [
   { title: "Make Evidence-Based Decisions", text: "Stop guessing. Access a live, data-backed snapshot of the medical landscape to support clinical, investment, or R&D decisions.", image: "/How_It_Helps_You/Make_Evidence-Based_Decisions.webp" },
 ];
 
-const IMPACTS = [
-  { value: "90%", label: "Reduction in manual review time" },
-  { value: "10K+", label: "Papers processed per cycle" },
-  { value: "Real-time", label: "Drug interaction alerts" },
-  { value: "3x", label: "Faster research-to-insight cycles" },
-];
-
 const AUDIENCES = [
   { title: "Pharmaceutical R&D Teams", text: "Accelerate drug discovery with structured literature intelligence.", image: "/biomedical-intelligence/WHO_ITS_FOR/Pharmaceutical_R&D_Teams.webp" },
   { title: "Clinical Research Organizations", text: "Monitor emerging evidence and safety signals in real-time.", image: "/biomedical-intelligence/WHO_ITS_FOR/Clinical_Research_Organizations.webp" },
@@ -127,10 +120,8 @@ export default function BiomedicalIntelligencePage() {
               <span className="text-xs font-semibold tracking-[0.22em] text-violet-300/80">AI SOLUTION</span>
             </motion.div>
 
-            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease, delay: 0.15 }} className="mt-6 max-w-xl text-balance text-4xl font-semibold tracking-[-0.03em] md:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
-              AI-Powered{" "}
-              <span className="bg-clip-text text-transparent" style={{ backgroundImage: pal.accentGrad }}>Biomedical Intelligence</span>{" "}
-              Dashboard
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease, delay: 0.15 }} className="mt-6 max-w-2xl text-4xl font-semibold tracking-[-0.03em] md:text-5xl lg:text-[3.5rem] lg:leading-[1.12]">
+              AI-Powered <span className="bg-clip-text text-transparent" style={{ backgroundImage: pal.accentGrad }}>Biomedical Intelligence</span> Dashboard
             </motion.h1>
 
             <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease, delay: 0.25 }} className="mt-6 max-w-lg text-base leading-relaxed text-white/60 md:text-lg">
@@ -224,67 +215,39 @@ export default function BiomedicalIntelligencePage() {
             <ScrollText as="div" text="HOW IT HELPS YOU" blur={4} distance={10} className="text-sm font-semibold tracking-[0.22em] text-violet-300/70" />
             <ScrollText as="h2" text="From data overload to decision clarity" lineAnime blur={10} distance={14} staggerChildren={0.05} className="mt-4 max-w-3xl text-2xl font-semibold tracking-[-0.02em] md:text-3xl" />
 
-            <div className="mt-16 space-y-20">
-              {HELPS.map((h, i) => {
-                const isOdd = i % 2 !== 0;
-                return (
-                  <motion.div key={h.title} variants={fadeUp} className={`grid items-center gap-10 lg:grid-cols-2 ${isOdd ? "lg:direction-rtl" : ""}`}>
-                    {/* Image side */}
-                    <motion.div
-                      className={`relative ${isOdd ? "lg:order-2" : ""}`}
-                      whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                      initial={{ opacity: 0, y: 30, rotate: isOdd ? 2 : -2 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease }}
-                    >
-                      <div className="relative overflow-hidden rounded-3xl border border-violet-500/12 shadow-xl shadow-violet-900/10">
-                        <div className="pointer-events-none absolute inset-0 z-10" style={{ background: `radial-gradient(ellipse at ${isOdd ? "80%" : "20%"} 30%, ${pal.glow1}, transparent 65%)` }} />
-                        <motion.img
-                          src={h.image}
-                          alt={h.title}
-                          className="h-64 w-full object-cover md:h-72"
-                          loading="lazy"
-                          decoding="async"
-                          whileHover={{ scale: 1.04 }}
-                          transition={{ duration: 0.6, ease }}
-                        />
-                      </div>
-                      <div className="pointer-events-none absolute -inset-6 -z-10 rounded-full blur-3xl" style={{ background: i === 0 ? "rgba(124,58,237,0.06)" : i === 1 ? "rgba(6,182,212,0.06)" : "rgba(245,158,11,0.05)" }} />
-                    </motion.div>
-
-                    {/* Text side */}
-                    <div className={`${isOdd ? "lg:order-1" : ""}`}>
-                      <motion.div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl text-sm font-bold text-white" style={{ background: pal.accentGrad }} whileHover={{ rotate: 6 }} transition={springy}>
-                        {String(i + 1).padStart(2, "0")}
-                      </motion.div>
-                      <h3 className="text-2xl font-semibold tracking-tight md:text-3xl">{h.title}</h3>
-                      <p className="mt-4 text-base leading-relaxed text-white/55 md:text-lg">{h.text}</p>
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {HELPS.map((h, i) => (
+                <motion.div
+                  key={h.title}
+                  variants={scaleIn}
+                  whileHover={{ y: -10, transition: springy }}
+                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-violet-500/10 bg-white/[0.02] backdrop-blur-sm transition-colors duration-300 hover:border-violet-400/25"
+                >
+                  {/* Image fills top half */}
+                  <div className="relative h-56 overflow-hidden">
+                    <motion.img
+                      src={h.image}
+                      alt={h.title}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#08081a] via-[#08081a]/50 to-transparent" />
+                    <div className="absolute bottom-4 left-5 right-5 z-10">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold text-white" style={{ background: pal.accentGrad }}>{String(i + 1).padStart(2, "0")}</div>
                     </div>
-                  </motion.div>
-                );
-              })}
+                  </div>
+                  {/* Text content */}
+                  <div className="flex flex-1 flex-col p-6 pt-4">
+                    <h3 className="text-xl font-semibold tracking-tight">{h.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-white/55">{h.text}</p>
+                  </div>
+                  <motion.div className="h-[2px]" style={{ background: pal.accentGrad }} initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, ease, delay: 0.2 + i * 0.12 }} />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* ══════════════════ IMPACT ══════════════════ */}
-      <section className="relative z-10 mx-auto max-w-6xl px-6 py-24">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={stag(0.1)}>
-          <ScrollText as="div" text="IMPACT" blur={4} distance={10} className="text-sm font-semibold tracking-[0.22em] text-violet-300/70" />
-          <ScrollText as="h2" text="Measurable outcomes from day one" lineAnime blur={10} distance={14} staggerChildren={0.05} className="mt-4 max-w-3xl text-2xl font-semibold tracking-[-0.02em] md:text-3xl" />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {IMPACTS.map((m, i) => (
-              <motion.div key={m.label} variants={scaleIn} whileHover={{ y: -6, transition: springy }} className="group relative overflow-hidden rounded-2xl border border-violet-500/10 bg-white/[0.02] p-8 text-center backdrop-blur-sm transition-colors duration-300 hover:border-violet-400/25">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(124,58,237,0.06),transparent_70%)]" />
-                <motion.div className="relative text-4xl font-bold tracking-tight md:text-5xl" style={{ background: pal.accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }} initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, ease, delay: 0.1 + i * 0.08 }}>
-                  {m.value}
-                </motion.div>
-                <div className="relative mt-3 text-sm text-white/50">{m.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </section>
 
       {/* ══════════════════ WHO IT'S FOR ══════════════════ */}
